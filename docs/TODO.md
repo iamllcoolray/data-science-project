@@ -1,0 +1,2 @@
+- [ ] Pick the topic/dataset to research
+- [ ] Proposal Paper
