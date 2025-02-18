@@ -1,0 +1,10 @@
+{
+    "Decision Tree": {
+        "criterion": ["squared_error", "friedman_mse", "absolute_error"],
+        "splitter": ["best", "random"],
+        "max_depth": [null, 10, 25, 50, 75],
+        "min_samples_split": [0.1, 0.2, 0.5, 0.8, 0.9],
+        "max_features": ["sqrt", "log2"]
+    }
+
+}

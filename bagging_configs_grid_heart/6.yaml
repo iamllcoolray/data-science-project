@@ -1,0 +1,40 @@
+# defines our whole pipeline (what data using, features, targets, splitting, size of train & test, preprocessing, imputation, ensembling, and saving results, and randomness.)
+
+DATA:
+  PROBLEM: Regression
+  DATA_PATH: heart.csv #data.csv
+  FEATURES: ["age","sex","cp","trestbps","chol","fbs","restecg","thalach","exang","oldpeak","slope","ca","thal"] #["DepthToWater","pH", "TotalDissolvedSolids", "Turbidity", "SpecificConductance"] # Always a list
+  TARGET: "target" #"Tritium" # Single value
+
+  SPLIT_TYPE: Stratified
+
+PREPROCESSING: 
+  FEATURES: [StandardScaler] # in-order
+  TARGET: [StandardScaler]  # in-order
+
+  IMPUTE_TYPE: MICE
+
+MODEL:
+  ENSEMBLE_TYPE: Bagging
+  ENSEMBLE_HYPERPARAMETERS:
+    # BAGGING ONLY
+    NUM_BOOSTRAP_SAMPLES: 200
+
+    # BOOSTING ONLY
+    NUM_ESTIMATORS: 5
+    LEARNING_RATE: 0.001
+    LOSS: MSE # TODO: Add support for more than MSE.
+
+    # CUSTOM ONLY
+    NUM_THETA_INTERVALS: 2
+    EPSILON: 0.001
+    P: 2
+    LOSS: MSE # TODO: Add support for more than MSE.
+
+RESULTS:
+  OUTPUT_DIR: runs
+  SAVE: True
+  VERBOSE: 1
+
+
+SEED: 1337 # Anything random uses this seed.
