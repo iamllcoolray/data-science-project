@@ -1,0 +1,26 @@
+DATA:
+  DATA_PATH: heart.csv
+  FEATURES: ["age","sex","cp","trestbps","chol","fbs","restecg","thalach","exang","oldpeak","slope","ca","thal"]
+  PROBLEM: Regression
+  SPLIT_TYPE: Stratified
+  TARGET: target
+MODEL:
+  ENSEMBLE_HYPERPARAMETERS:
+    LEARNING_RATE: 0.001
+    LOSS: MSE
+    NUM_BOOSTRAP_SAMPLES: 5
+    NUM_ESTIMATORS: 5
+    NUM_THETA_INTERVALS: 2
+    P: 2
+  ENSEMBLE_TYPE: null
+PREPROCESSING:
+  FEATURES:
+  - StandardScaler
+  IMPUTE_TYPE: MICE
+  TARGET:
+  - StandardScaler
+RESULTS:
+  OUTPUT_DIR: runs
+  SAVE: true
+  VERBOSE: 1
+SEED: 1337

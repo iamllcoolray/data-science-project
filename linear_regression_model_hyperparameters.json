@@ -1,0 +1,7 @@
+{
+    "Linear Regression":{
+        "fit_intercept":[
+            true,false
+        ]
+    }
+}
