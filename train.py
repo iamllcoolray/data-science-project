@@ -5,6 +5,7 @@ import pandas as pd
 import logging
 import os
 import pickle
+import torch
 
 from datasets.cross_validation import get_dataset_split
 from datasets.impute import impute_dataset
@@ -86,7 +87,10 @@ def main(config:dict, hyperparameters:dict):
                 y_train = target_prep.fit_transform(y_train)           
 
                 model.train(X_train, y_train)
-                y_hat = target_prep.inverse_transform(model(X_test))
+                if algorithm_name == "MLP":
+                    y_hat = target_prep.inverse_transform(model(torch.Tensor(X_test)).detach().numpy())
+                else:
+                    y_hat = target_prep.inverse_transform(model(X_test))
                 #y_hat = model(X_test)
                 #y_test = target_prep.transform(y_test)
 

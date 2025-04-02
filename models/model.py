@@ -1,4 +1,6 @@
 from .machine_learning import LinearRegression, GradientBoosting, DecisionTree, ElasticNet
+from .deep_learning import MLPTrainer
+
 
 def create_model(algorithm_name:str, hyperparameters:dict, seed:int = 1337):
     model = None
@@ -13,6 +15,8 @@ def create_model(algorithm_name:str, hyperparameters:dict, seed:int = 1337):
     elif algorithm_name == "ElasticNet":
         hyperparameters["random_state"] = seed
         model = ElasticNet(hyperparameters)
+    elif algorithm_name == "MLP":
+        model = MLPTrainer(hyperparameters, seed = seed)
     return model
     
 
